@@ -2,9 +2,11 @@
 // Licensed under the MIT License.
 
 #import "MSDeviceTracker.h"
+#import "MSAppCenterInternal.h"
 #import "MSConstants+Internal.h"
 #import "MSDeviceHistoryInfo.h"
 #import "MSDeviceTrackerPrivate.h"
+#import "MSLoggerInternal.h"
 #import "MSUserDefaults.h"
 #import "MSUtility+Application.h"
 #import "MSUtility+Date.h"
@@ -58,7 +60,16 @@ static MSDeviceTracker *sharedInstance = nil;
     // Restore past sessions from NSUserDefaults.
     NSData *devices = [MS_USER_DEFAULTS objectForKey:kMSPastDevicesKey];
     if (devices != nil) {
-      NSArray *arrayFromData = [NSKeyedUnarchiver unarchiveObjectWithData:devices];
+      NSArray *arrayFromData = nil;
+#if TARGET_OS_MACCATALYST
+      NSError *error = nil;
+      arrayFromData = (NSMutableArray *)[NSKeyedUnarchiver unarchivedObjectOfClass:[NSObject class] fromData:devices error:&error];
+      if (error != nil) {
+        MSLogError([MSAppCenter logTag], @"Failed to unarchive device history: %@.", error.localizedDescription);
+      }
+#else
+      arrayFromData = (NSMutableArray *)[(NSObject *)[NSKeyedUnarchiver unarchiveObjectWithData:devices] mutableCopy];
+#endif
 
       // If array is not nil, create a mutable version.
       if (arrayFromData)
@@ -130,7 +141,18 @@ static MSDeviceTracker *sharedInstance = nil;
       }
 
       // Persist the device history in NSData format.
+
+#if TARGET_OS_MACCATALYST
+      NSError *error = nil;
+      [MS_USER_DEFAULTS
+          setObject:(NSData * _Nonnull)[NSKeyedArchiver archivedDataWithRootObject:self.deviceHistory requiringSecureCoding:NO error:&error]
+             forKey:kMSPastDevicesKey];
+      if (error != nil) {
+        MSLogError([MSAppCenter logTag], @"Failed to save device to history: %@.", error.localizedDescription);
+      }
+#else
       [MS_USER_DEFAULTS setObject:[NSKeyedArchiver archivedDataWithRootObject:self.deviceHistory] forKey:kMSPastDevicesKey];
+#endif
     }
     return _device;
   }
@@ -145,15 +167,15 @@ static MSDeviceTracker *sharedInstance = nil;
 #if TARGET_OS_IOS
     CTTelephonyNetworkInfo *telephonyNetworkInfo = [CTTelephonyNetworkInfo new];
     CTCarrier *carrier;
-      
+
     // The CTTelephonyNetworkInfo.serviceSubscriberCellularProviders method crash because of an issue in iOS 12.0
     // It was fixed in iOS 12.1
     if (@available(iOS 12.1, *)) {
       NSDictionary<NSString *, CTCarrier *> *carriers = [telephonyNetworkInfo serviceSubscriberCellularProviders];
       carrier = [self firstCarrier:carriers];
     } else if (@available(iOS 12, *)) {
-        NSDictionary<NSString *, CTCarrier *> *carriers = [telephonyNetworkInfo valueForKey:@"serviceSubscriberCellularProvider"];
-        carrier = [self firstCarrier:carriers];
+      NSDictionary<NSString *, CTCarrier *> *carriers = [telephonyNetworkInfo valueForKey:@"serviceSubscriberCellularProvider"];
+      carrier = [self firstCarrier:carriers];
     }
 
     // Use the old API as fallback if new one doesn't work.
@@ -260,11 +282,22 @@ static MSDeviceTracker *sharedInstance = nil;
 
     // Clear information about the entire history, except for the current device.
     if (self.deviceHistory.count > 1) {
-        [self.deviceHistory removeObjectsInRange: NSMakeRange(0, self.deviceHistory.count - 1)];
+      [self.deviceHistory removeObjectsInRange:NSMakeRange(0, self.deviceHistory.count - 1)];
     }
 
     // Clear persistence, but keep the latest information about the device.
-    [MS_USER_DEFAULTS setObject:[NSKeyedArchiver archivedDataWithRootObject: self.deviceHistory] forKey:kMSPastDevicesKey];
+
+#if TARGET_OS_MACCATALYST
+    NSError *error = nil;
+    [MS_USER_DEFAULTS
+        setObject:(NSData * _Nonnull)[NSKeyedArchiver archivedDataWithRootObject:self.deviceHistory requiringSecureCoding:NO error:&error]
+           forKey:kMSPastDevicesKey];
+    if (error != nil) {
+      MSLogError([MSAppCenter logTag], @"Failed to clear device history: %@.", error.localizedDescription);
+    }
+#else
+    [MS_USER_DEFAULTS setObject:[NSKeyedArchiver archivedDataWithRootObject:self.deviceHistory] forKey:kMSPastDevicesKey];
+#endif
   }
 }
 
@@ -391,11 +424,11 @@ static MSDeviceTracker *sharedInstance = nil;
   return ([carrier.isoCountryCode length] > 0) ? carrier.isoCountryCode : nil;
 }
 
-- (CTCarrier *)firstCarrier:(NSDictionary<NSString *, CTCarrier *> *) carriers {
-    for (NSString *key in carriers) {
-        return carriers[key];
-    }
-    return nil;
+- (CTCarrier *)firstCarrier:(NSDictionary<NSString *, CTCarrier *> *)carriers {
+  for (NSString *key in carriers) {
+    return carriers[key];
+  }
+  return nil;
 }
 #endif
 

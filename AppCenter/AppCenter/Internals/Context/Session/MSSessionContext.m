@@ -33,7 +33,15 @@ static dispatch_once_t onceToken;
   if (self) {
     NSData *data = [MS_USER_DEFAULTS objectForKey:kMSSessionIdHistoryKey];
     if (data != nil) {
+#if TARGET_OS_MACCATALYST
+      NSError *error = nil;
+      _sessionHistory = (NSMutableArray *)[NSKeyedUnarchiver unarchivedObjectOfClass:[NSObject class] fromData:data error:&error];
+      if (error != nil) {
+        MSLogError([MSAppCenter logTag], @"Failed to unarchive session history: %@.", error.localizedDescription);
+      }
+#else
       _sessionHistory = (NSMutableArray *)[(NSObject *)[NSKeyedUnarchiver unarchiveObjectWithData:data] mutableCopy];
+#endif
     }
     if (!_sessionHistory) {
       _sessionHistory = [NSMutableArray<MSSessionHistoryInfo *> new];
@@ -61,7 +69,17 @@ static dispatch_once_t onceToken;
     self.currentSessionInfo.sessionId = sessionId;
     self.currentSessionInfo.timestamp = [NSDate date];
     [self.sessionHistory addObject:self.currentSessionInfo];
+#if TARGET_OS_MACCATALYST
+    NSError *error = nil;
+    [MS_USER_DEFAULTS
+        setObject:(NSData * _Nonnull)[NSKeyedArchiver archivedDataWithRootObject:self.sessionHistory requiringSecureCoding:NO error:&error]
+           forKey:kMSSessionIdHistoryKey];
+    if (error != nil) {
+      MSLogError([MSAppCenter logTag], @"Failed to save sessionID to history: %@.", error.localizedDescription);
+    }
+#else
     [MS_USER_DEFAULTS setObject:[NSKeyedArchiver archivedDataWithRootObject:self.sessionHistory] forKey:kMSSessionIdHistoryKey];
+#endif
     MSLogVerbose([MSAppCenter logTag], @"Stored new session with id:%@ and timestamp: %@.", self.currentSessionInfo.sessionId,
                  self.currentSessionInfo.timestamp);
   }
@@ -84,7 +102,17 @@ static dispatch_once_t onceToken;
     if (keepCurrentSession) {
       [self.sessionHistory addObject:self.currentSessionInfo];
     }
+#if TARGET_OS_MACCATALYST
+    NSError *error = nil;
+    [MS_USER_DEFAULTS
+        setObject:(NSData * _Nonnull)[NSKeyedArchiver archivedDataWithRootObject:self.sessionHistory requiringSecureCoding:NO error:&error]
+           forKey:kMSSessionIdHistoryKey];
+    if (error != nil) {
+      MSLogError([MSAppCenter logTag], @"Failed to save sessionID to history: %@.", error.localizedDescription);
+    }
+#else
     [MS_USER_DEFAULTS setObject:[NSKeyedArchiver archivedDataWithRootObject:self.sessionHistory] forKey:kMSSessionIdHistoryKey];
+#endif
     MSLogVerbose([MSAppCenter logTag], @"Cleared old sessions.");
   }
 }

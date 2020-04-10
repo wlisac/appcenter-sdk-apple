@@ -53,16 +53,24 @@ static const NSUInteger kMSSchemaVersion = 5;
   MSFlags persistenceFlags = flags & kMSPersistenceFlagsMask;
 
   // Insert this log to the DB.
-  NSData *logData = [NSKeyedArchiver archivedDataWithRootObject:log];
+  NSData *logData = nil;
+#if TARGET_OS_MACCATALYST
+  NSError *error = nil;
+  logData = [NSKeyedArchiver archivedDataWithRootObject:log requiringSecureCoding:NO error:&error];
+  if (error != nil) {
+    MSLogError([MSAppCenter logTag], @"Failed to save log: %@.", error.localizedDescription);
+  }
+#else
+  logData = [NSKeyedArchiver archivedDataWithRootObject:log];
+#endif
   NSString *base64Data = [logData base64EncodedStringWithOptions:NSDataBase64EncodingEndLineWithLineFeed];
 
   MSStorageBindableArray *addLogValues = [MSStorageBindableArray new];
   [addLogValues addString:groupId];
   [addLogValues addString:base64Data];
   [addLogValues addNumber:@(persistenceFlags)];
-  NSString *addLogQuery =
-      [NSString stringWithFormat:@"INSERT INTO \"%@\" (\"%@\", \"%@\", \"%@\") VALUES (?, ?, ?)", kMSLogTableName,
-                                 kMSGroupIdColumnName, kMSLogColumnName, kMSPriorityColumnName];
+  NSString *addLogQuery = [NSString stringWithFormat:@"INSERT INTO \"%@\" (\"%@\", \"%@\", \"%@\") VALUES (?, ?, ?)", kMSLogTableName,
+                                                     kMSGroupIdColumnName, kMSLogColumnName, kMSPriorityColumnName];
 
   // Serialize target token.
   if ([(NSObject *)log isKindOfClass:[MSCommonSchemaLog class]]) {
@@ -76,10 +84,9 @@ static const NSUInteger kMSSchemaVersion = 5;
     [addLogValues addString:encryptedToken];
     [addLogValues addString:targetKey];
     [addLogValues addNumber:@(persistenceFlags)];
-    addLogQuery =
-        [NSString stringWithFormat:@"INSERT INTO \"%@\" (\"%@\", \"%@\", \"%@\", \"%@\", \"%@\") VALUES (?, ?, ?, ?, ?)",
-                                   kMSLogTableName, kMSGroupIdColumnName, kMSLogColumnName, kMSTargetTokenColumnName,
-                                   kMSTargetKeyColumnName, kMSPriorityColumnName];
+    addLogQuery = [NSString stringWithFormat:@"INSERT INTO \"%@\" (\"%@\", \"%@\", \"%@\", \"%@\", \"%@\") VALUES (?, ?, ?, ?, ?)",
+                                             kMSLogTableName, kMSGroupIdColumnName, kMSLogColumnName, kMSTargetTokenColumnName,
+                                             kMSTargetKeyColumnName, kMSPriorityColumnName];
   }
   return [self executeQueryUsingBlock:^int(void *db) {
            // Check maximum size.
@@ -297,7 +304,15 @@ static const NSUInteger kMSSchemaVersion = 5;
 
     // Deserialize the log.
     @try {
-      log = [NSKeyedUnarchiver unarchiveObjectWithData:logData];
+#if TARGET_OS_MACCATALYST
+      NSError *error = nil;
+      log = (id<MSLog>)[NSKeyedArchiver archivedDataWithRootObject:logData requiringSecureCoding:NO error:&error];
+      if (error != nil) {
+        MSLogError([MSAppCenter logTag], @"Failed to save log: %@.", error.localizedDescription);
+      }
+#else
+      log = (id<MSLog>)[NSKeyedArchiver archivedDataWithRootObject:logData];
+#endif
     } @catch (NSException *e) {
       exception = e;
     }
@@ -392,7 +407,7 @@ static const NSUInteger kMSSchemaVersion = 5;
  * After altering current schema, database version should be bumped and actions for migration should be implemented in this method.
  */
 - (void)migrateDatabase:(void *)db fromVersion:(NSUInteger __unused)version {
-  
+
   /*
    * With version 3.0 of the SDK we decided to remove timestamp column and as
    * it's a major SDK version and SQLite does not support removing column we just start over.

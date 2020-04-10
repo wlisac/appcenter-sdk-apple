@@ -45,7 +45,15 @@ static dispatch_once_t onceToken;
   if (self) {
     NSData *data = [MS_USER_DEFAULTS objectForKey:kMSUserIdHistoryKey];
     if (data != nil) {
+#if TARGET_OS_MACCATALYST
+      NSError *error = nil;
+      _userIdHistory = (NSMutableArray *)[NSKeyedUnarchiver unarchivedObjectOfClass:[NSObject class] fromData:data error:&error];
+      if (error != nil) {
+        MSLogError([MSAppCenter logTag], @"Failed to unarchive userId history: %@.", error.localizedDescription);
+      }
+#else
       _userIdHistory = (NSMutableArray *)[(NSObject *)[NSKeyedUnarchiver unarchiveObjectWithData:data] mutableCopy];
+#endif
     }
     if (!_userIdHistory) {
       _userIdHistory = [NSMutableArray<MSUserIdHistoryInfo *> new];
@@ -61,7 +69,17 @@ static dispatch_once_t onceToken;
      * Persist nil userId as a current userId to NSUserDefaults so that Crashes can retrieve a correct userId when apps crash between App
      * Center start and setUserId call.
      */
+#if TARGET_OS_MACCATALYST
+    NSError *error = nil;
+    [MS_USER_DEFAULTS
+        setObject:(NSData * _Nonnull)[NSKeyedArchiver archivedDataWithRootObject:self.userIdHistory requiringSecureCoding:NO error:&error]
+           forKey:kMSUserIdHistoryKey];
+    if (error != nil) {
+      MSLogError([MSAppCenter logTag], @"Failed to save userId to history: %@.", error.localizedDescription);
+    }
+#else
     [MS_USER_DEFAULTS setObject:[NSKeyedArchiver archivedDataWithRootObject:self.userIdHistory] forKey:kMSUserIdHistoryKey];
+#endif
     _delegates = [NSHashTable weakObjectsHashTable];
   }
   return self;
@@ -93,7 +111,17 @@ static dispatch_once_t onceToken;
      */
     [self.userIdHistory removeLastObject];
     [self.userIdHistory addObject:self.currentUserIdInfo];
+#if TARGET_OS_MACCATALYST
+    NSError *error = nil;
+    [MS_USER_DEFAULTS
+        setObject:(NSData * _Nonnull)[NSKeyedArchiver archivedDataWithRootObject:self.userIdHistory requiringSecureCoding:NO error:&error]
+           forKey:kMSUserIdHistoryKey];
+    if (error != nil) {
+      MSLogError([MSAppCenter logTag], @"Failed to save userID to history: %@.", error.localizedDescription);
+    }
+#else
     [MS_USER_DEFAULTS setObject:[NSKeyedArchiver archivedDataWithRootObject:self.userIdHistory] forKey:kMSUserIdHistoryKey];
+#endif
     MSLogVerbose([MSAppCenter logTag], @"Stored new userId:%@ and timestamp: %@.", self.currentUserIdInfo.userId,
                  self.currentUserIdInfo.timestamp);
     synchronizedDelegates = [self.delegates allObjects];
@@ -120,7 +148,17 @@ static dispatch_once_t onceToken;
   @synchronized(self) {
     [self.userIdHistory removeAllObjects];
     [self.userIdHistory addObject:self.currentUserIdInfo];
+#if TARGET_OS_MACCATALYST
+    NSError *error = nil;
+    [MS_USER_DEFAULTS
+        setObject:(NSData * _Nonnull)[NSKeyedArchiver archivedDataWithRootObject:self.userIdHistory requiringSecureCoding:NO error:&error]
+           forKey:kMSUserIdHistoryKey];
+    if (error != nil) {
+      MSLogError([MSAppCenter logTag], @"Failed to clear userId history: %@.", error.localizedDescription);
+    }
+#else
     [MS_USER_DEFAULTS setObject:[NSKeyedArchiver archivedDataWithRootObject:self.userIdHistory] forKey:kMSUserIdHistoryKey];
+#endif
     MSLogVerbose([MSAppCenter logTag], @"Cleared old userIds while keeping current userId.");
   }
 }
