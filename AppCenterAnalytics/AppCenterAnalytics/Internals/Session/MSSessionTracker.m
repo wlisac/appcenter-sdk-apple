@@ -70,7 +70,9 @@ static NSString *const kMSPastSessionsKey = @"pastSessionsKey";
     // Hookup to application events.
     [MS_NOTIFICATION_CENTER addObserver:self
                                selector:@selector(applicationDidEnterBackground)
-#if TARGET_OS_OSX
+#if TARGET_OS_MACCATALYST
+                                   name:UIApplicationWillResignActiveNotification
+#elif TARGET_OS_OSX
                                    name:NSApplicationDidResignActiveNotification
 #else
                                    name:UIApplicationDidEnterBackgroundNotification
@@ -78,8 +80,10 @@ static NSString *const kMSPastSessionsKey = @"pastSessionsKey";
                                  object:nil];
     [MS_NOTIFICATION_CENTER addObserver:self
                                selector:@selector(applicationWillEnterForeground)
-#if TARGET_OS_OSX
-                                   name:NSApplicationWillBecomeActiveNotification
+#if TARGET_OS_MACCATALYST
+                                   name:UIApplicationDidBecomeActiveNotification
+#elif TARGET_OS_OSX
+                                   name:NSApplicationDidBecomeActiveNotification
 #else
                                    name:UIApplicationWillEnterForegroundNotification
 #endif

@@ -16,7 +16,7 @@ static BOOL isApplicationForwarderEnabled() {
   return forwarderEnabled ? [forwarderEnabled boolValue] : YES;
 }
 
-#if TARGET_OS_OSX
+#if TARGET_OS_OSX // TODO || TARGET_OS_MACCATALYST
 
 /**
  * The flag to allow crashing on uncaught exceptions thrown on the main thread.
@@ -191,7 +191,7 @@ static void swizzleSendEvent() {
                kMSAppCenterApplicationForwarderEnabledKey);
     return;
   }
-#if TARGET_OS_OSX
+#if TARGET_OS_OSX // TODO || TARGET_OS_MACCATALYST
   if (isCrashOnExceptionsEnabled()) {
 
     /*
