@@ -604,7 +604,7 @@ static NSTimeInterval const kMSTestTimeout = 1.0;
   expectedFile = @"/Library/Caches/com.microsoft.appcenter/testing/afile.test";
 #else
 #if TARGET_OS_OSX
-  expectedFile = @"/Library/Application%20Support/(null)/com.microsoft.appcenter/testing/afile.test";
+  expectedFile = @"/Library/Application%20Support/com.apple.dt.xctest.tool/com.microsoft.appcenter/testing/afile.test";
 #else
   expectedFile = @"/Library/Application%20Support/com.microsoft.appcenter/testing/afile.test";
 #endif
@@ -657,7 +657,7 @@ static NSTimeInterval const kMSTestTimeout = 1.0;
   expectedFile = @"/Library/Caches/com.microsoft.appcenter/testing/anotherfile.test";
 #else
 #if TARGET_OS_OSX
-  expectedFile = @"/Library/Application%20Support/(null)/com.microsoft.appcenter/testing/anotherfile.test";
+  expectedFile = @"/Library/Application%20Support/com.apple.dt.xctest.tool/com.microsoft.appcenter/testing/anotherfile.test";
 #else
   expectedFile = @"/Library/Application%20Support/com.microsoft.appcenter/testing/anotherfile.test";
 #endif
@@ -685,7 +685,7 @@ static NSTimeInterval const kMSTestTimeout = 1.0;
   expectedFile = @"/Library/Caches/com.microsoft.appcenter/testing";
 #else
 #if TARGET_OS_OSX
-  expectedFile = @"/Library/Application%20Support/(null)/com.microsoft.appcenter/testing";
+  expectedFile = @"/Library/Application%20Support/com.apple.dt.xctest.tool/com.microsoft.appcenter/testing";
 #else
   expectedFile = @"/Library/Application%20Support/com.microsoft.appcenter/testing";
 #endif
@@ -783,7 +783,7 @@ static NSTimeInterval const kMSTestTimeout = 1.0;
   expectedFile = @"/Library/Caches/com.microsoft.appcenter/testing/anotherfile.test";
 #else
 #if TARGET_OS_OSX
-  expectedFile = @"/Library/Application%20Support/(null)/com.microsoft.appcenter/testing/anotherfile.test";
+  expectedFile = @"/Library/Application%20Support/com.apple.dt.xctest.tool/com.microsoft.appcenter/testing/anotherfile.test";
 #else
   expectedFile = @"/Library/Application%20Support/com.microsoft.appcenter/testing/anotherfile.test";
 #endif

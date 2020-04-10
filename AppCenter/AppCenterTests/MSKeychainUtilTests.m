@@ -16,7 +16,7 @@
 - (void)setUp {
   [super setUp];
   self.keychainUtilMock = OCMClassMock([MSKeychainUtil class]);
-  self.acServiceName = [NSString stringWithFormat:@"(null).%@", kMSServiceSuffix];
+  self.acServiceName = [NSString stringWithFormat:@"com.apple.dt.xctest.tool.%@", kMSServiceSuffix];
 }
 
 - (void)tearDown {
