@@ -39,8 +39,6 @@
 		80B3CADB211B2686007C332E /* MSAuthenticationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B3CAD9211B2686007C332E /* MSAuthenticationViewController.swift */; };
 		80B3CADC211B2686007C332E /* MSAuthenticationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B3CAD9211B2686007C332E /* MSAuthenticationViewController.swift */; };
 		80B3CADD211B2686007C332E /* MSAuthenticationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B3CAD9211B2686007C332E /* MSAuthenticationViewController.swift */; };
-		8401C21D243F6FF900995124 /* CrashLibWatchOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8401C21C243F6FA800995124 /* CrashLibWatchOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		8401C21E243F700D00995124 /* CrashLibWatchOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8401C21C243F6FA800995124 /* CrashLibWatchOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		84226C4B1E88FF4A00798417 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 84226C4A1E88FF4A00798417 /* main.m */; };
 		84226C4E1E88FF4A00798417 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 84226C4D1E88FF4A00798417 /* AppDelegate.m */; };
 		84226C561E88FF4A00798417 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84226C551E88FF4A00798417 /* Assets.xcassets */; };
@@ -201,6 +199,10 @@
 		C27AD55E234C961C00A2576F /* Sasquatch ObjC.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = C27AD55C234C961C00A2576F /* Sasquatch ObjC.xcconfig */; };
 		C2F156D12338C2FC00798480 /* CrashLibIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2F156AA2338C26A00798480 /* CrashLibIOS.framework */; };
 		C2F156D22338C2FC00798480 /* CrashLibIOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C2F156AA2338C26A00798480 /* CrashLibIOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C2F156D52338C30400798480 /* CrashLibIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2F156AA2338C26A00798480 /* CrashLibIOS.framework */; };
+		C2F156D62338C30400798480 /* CrashLibIOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C2F156AA2338C26A00798480 /* CrashLibIOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C2F156DA2338C30C00798480 /* CrashLibIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2F156AA2338C26A00798480 /* CrashLibIOS.framework */; };
+		C2F156DB2338C30C00798480 /* CrashLibIOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C2F156AA2338C26A00798480 /* CrashLibIOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C2F156E02338C31500798480 /* CrashLibIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2F156AA2338C26A00798480 /* CrashLibIOS.framework */; };
 		C2F156E12338C31E00798480 /* CrashLibIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2F156AA2338C26A00798480 /* CrashLibIOS.framework */; };
 		C2F156E22338C31E00798480 /* CrashLibIOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C2F156AA2338C26A00798480 /* CrashLibIOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -312,13 +314,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 84226C461E88FF4A00798417;
 			remoteInfo = SasquatchObjC;
-		};
-		8401C21B243F6FA800995124 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C2F156A32338C26A00798480 /* CrashLib.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 8401C1A4243F6E7B00995124;
-			remoteInfo = CrashLibWatchOS;
 		};
 		B20AE3CA2102812300A1A195 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -621,6 +616,20 @@
 			remoteGlobalIDString = B21A71DA1DD2A38C0044BB1C;
 			remoteInfo = CrashLibIOS;
 		};
+		C2F156CB2338C2CE00798480 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C2F156A32338C26A00798480 /* CrashLib.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = B21A71DA1DD2A38C0044BB1C;
+			remoteInfo = CrashLibIOS;
+		};
+		C2F156CD2338C2D400798480 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C2F156A32338C26A00798480 /* CrashLib.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = B21A71DA1DD2A38C0044BB1C;
+			remoteInfo = CrashLibIOS;
+		};
 		C2F156CF2338C2DA00798480 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = C2F156A32338C26A00798480 /* CrashLib.xcodeproj */;
@@ -811,7 +820,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				8401C21E243F700D00995124 /* CrashLibWatchOS.framework in Embed Frameworks */,
+				C2F156D62338C30400798480 /* CrashLibIOS.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -822,7 +831,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				8401C21D243F6FF900995124 /* CrashLibWatchOS.framework in Embed Frameworks */,
+				C2F156DB2338C30C00798480 /* CrashLibIOS.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1193,6 +1202,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C2F156DA2338C30C00798480 /* CrashLibIOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1238,6 +1248,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C2F156D52338C30400798480 /* CrashLibIOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1557,7 +1568,6 @@
 			isa = PBXGroup;
 			children = (
 				C2F156AA2338C26A00798480 /* CrashLibIOS.framework */,
-				8401C21C243F6FA800995124 /* CrashLibWatchOS.framework */,
 				C2F156AC2338C26A00798480 /* CrashLibTV.framework */,
 				C2F156AE2338C26A00798480 /* CrashLibMac.framework */,
 			);
@@ -1941,6 +1951,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				C2F156CC2338C2CE00798480 /* PBXTargetDependency */,
 				D31EF9631E9517C600450162 /* PBXTargetDependency */,
 				C2F156DD2338C30C00798480 /* PBXTargetDependency */,
 			);
@@ -1961,6 +1972,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				C2F156CE2338C2D400798480 /* PBXTargetDependency */,
 				C2F156D82338C30400798480 /* PBXTargetDependency */,
 			);
 			name = "SasquatchWatchSwift Extension";
@@ -2158,13 +2170,6 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		8401C21C243F6FA800995124 /* CrashLibWatchOS.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = CrashLibWatchOS.framework;
-			remoteRef = 8401C21B243F6FA800995124 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		B20AE3CB2102812300A1A195 /* AppCenter.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
@@ -2547,7 +2552,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#\"${SRCROOT}/../Scripts/VerifyNoBuildSettings.swift\" ${PROJECT_NAME}.xcodeproj/project.pbxproj\n";
+			shellScript = "\"${SRCROOT}/../Scripts/VerifyNoBuildSettings.swift\" ${PROJECT_NAME}.xcodeproj/project.pbxproj\n";
 			showEnvVarsInLog = 0;
 		};
 		C9FA992323200B9E007E276C /* Verify No Build Settings */ = {
@@ -2698,7 +2703,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#\"${SRCROOT}/../Scripts/VerifyNoBuildSettings.swift\" ${PROJECT_NAME}.xcodeproj/project.pbxproj\n";
+			shellScript = "\"${SRCROOT}/../Scripts/VerifyNoBuildSettings.swift\" ${PROJECT_NAME}.xcodeproj/project.pbxproj\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -3047,6 +3052,16 @@
 			isa = PBXTargetDependency;
 			name = CrashLibIOS;
 			targetProxy = C2F156C92338C2C800798480 /* PBXContainerItemProxy */;
+		};
+		C2F156CC2338C2CE00798480 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = CrashLibIOS;
+			targetProxy = C2F156CB2338C2CE00798480 /* PBXContainerItemProxy */;
+		};
+		C2F156CE2338C2D400798480 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = CrashLibIOS;
+			targetProxy = C2F156CD2338C2D400798480 /* PBXContainerItemProxy */;
 		};
 		C2F156D02338C2DA00798480 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
