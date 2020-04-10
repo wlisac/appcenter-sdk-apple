@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 #import <Foundation/Foundation.h>
-#if !TARGET_OS_OSX
+#if !TARGET_OS_OSX && !TARGET_OS_MACCATALYST
 #import <UserNotifications/UserNotifications.h>
 #endif
 
@@ -22,7 +22,7 @@ static MSUserNotificationCenterDelegateForwarder *sharedInstance = nil;
 
   // TODO test the forwarder on macOS.
   // Register selectors to swizzle (iOS 10+).
-#if !TARGET_OS_OSX
+#if !TARGET_OS_OSX && !TARGET_OS_MACCATALYST
   if (@available(iOS 10.0, tvOS 10.0, watchOS 3.0, *)) {
     [[MSUserNotificationCenterDelegateForwarder sharedInstance]
         addDelegateSelectorToSwizzle:@selector(userNotificationCenter:willPresentNotification:withCompletionHandler:)];
@@ -49,7 +49,7 @@ static MSUserNotificationCenterDelegateForwarder *sharedInstance = nil;
 }
 
 - (Class)originalClassForSetDelegate {
-#if !TARGET_OS_OSX
+#if !TARGET_OS_OSX && !TARGET_OS_MACCATALYST
   if (@available(iOS 10.0, tvOS 10.0, watchOS 3.0, *)) {
     return [UNUserNotificationCenter class];
   }
@@ -63,7 +63,7 @@ static MSUserNotificationCenterDelegateForwarder *sharedInstance = nil;
 
 #pragma mark - Custom Application
 
-#if !TARGET_OS_OSX
+#if !TARGET_OS_OSX && !TARGET_OS_MACCATALYST
 
 - (void)custom_setDelegate:(id<UNUserNotificationCenterDelegate>)delegate API_AVAILABLE(ios(10.0), tvos(10.0), watchos(3.0)) {
 

@@ -53,7 +53,7 @@
   [[MSAppDelegateForwarder sharedInstance] addDelegateSelectorToSwizzle:@selector(application:
                                                                             didFailToRegisterForRemoteNotificationsWithError:)];
   [[MSAppDelegateForwarder sharedInstance] addDelegateSelectorToSwizzle:@selector(application:didReceiveRemoteNotification:)];
-#if !TARGET_OS_OSX
+#if !TARGET_OS_OSX && !TARGET_OS_MACCATALYST
   [[MSAppDelegateForwarder sharedInstance] addDelegateSelectorToSwizzle:@selector(application:
                                                                             didReceiveRemoteNotification:fetchCompletionHandler:)];
 #endif
@@ -98,7 +98,7 @@
   [[MSAppDelegateForwarder sharedInstance] application:application didReceiveRemoteNotification:userInfo];
 }
 
-#if !TARGET_OS_OSX
+#if !TARGET_OS_OSX && !TARGET_OS_MACCATALYST
 
 - (void)custom_application:(UIApplication *)application
     didReceiveRemoteNotification:(NSDictionary *)userInfo

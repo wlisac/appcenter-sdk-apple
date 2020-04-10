@@ -310,7 +310,7 @@ __attribute__((noreturn)) static void uncaught_cxx_exception_handler(const MSCra
 - (void)applyEnabledState:(BOOL)isEnabled {
   [super applyEnabledState:isEnabled];
 
-#if !TARGET_OS_OSX
+#if !TARGET_OS_OSX && !TARGET_OS_MACCATALYST
 
   // Remove all notification handlers.
   [MS_NOTIFICATION_CENTER removeObserver:self];
@@ -348,7 +348,7 @@ __attribute__((noreturn)) static void uncaught_cxx_exception_handler(const MSCra
 #endif
 
     // Set up memory warning handler.
-#if !TARGET_OS_OSX
+#if !TARGET_OS_OSX && !TARGET_OS_MACCATALYST
     if (MS_IS_APP_EXTENSION) {
 #endif
       self.memoryPressureSource =
@@ -360,7 +360,7 @@ __attribute__((noreturn)) static void uncaught_cxx_exception_handler(const MSCra
         [strongSelf didReceiveMemoryWarning:nil];
       });
       dispatch_resume(self.memoryPressureSource);
-#if !TARGET_OS_OSX
+#if !TARGET_OS_OSX && !TARGET_OS_MACCATALYST
     } else {
       [MS_NOTIFICATION_CENTER addObserver:self
                                  selector:@selector(didReceiveMemoryWarning:)

@@ -63,7 +63,7 @@ static NSString *const kMSPushNotificationOldCustomDataKey = @"mobile_center";
  */
 - (void)registerForRemoteNotifications;
 
-#if TARGET_OS_OSX
+#if TARGET_OS_OSX || TARGET_OS_MACCATALYST
 
 /**
  * Method to return a context for observing delegate changes.

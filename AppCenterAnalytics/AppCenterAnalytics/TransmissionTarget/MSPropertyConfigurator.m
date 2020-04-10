@@ -26,7 +26,7 @@
 
 @implementation MSPropertyConfigurator
 
-#if TARGET_OS_OSX
+#if TARGET_OS_OSX || TARGET_OS_MACCATALYST
 static const char deviceIdPrefix = 'u';
 #else
 static const char deviceIdPrefix = 'i';

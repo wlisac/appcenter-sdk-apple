@@ -8,7 +8,7 @@
 
 + (void)performBlockOnMainThread:(void (^)(void))block {
 
-#if TARGET_OS_OSX
+#if TARGET_OS_OSX || TARGET_OS_MACCATALYST
   [self performSelectorOnMainThread:@selector(runBlock:) withObject:block waitUntilDone:NO];
 #else
   if ([NSThread isMainThread]) {
