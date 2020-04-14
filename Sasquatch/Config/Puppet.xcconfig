@@ -6,6 +6,10 @@ SWIFT_ACTIVE_COMPILATION_CONDITIONS = $(inherited) ACTIVE_COMPILATION_CONDITION_
 USER_HEADER_SEARCH_PATHS = $(SRCROOT)/../AppCenter/AppCenter/** $(SRCROOT)/../AppCenterAnalytics/AppCenterAnalytics/** $(SRCROOT)/../AppCenterCrashes/AppCenterCrashes/** $(SRCROOT)/../AppCenterDistribute/AppCenterDistribute/** $(SRCROOT)/../AppCenterPush/AppCenterPush/**
 FRAMEWORK_SEARCH_PATHS = $(SRCROOT)/../Vendor/iOS/** $(SRCROOT)/../CrashLib/CrashLib
 
+// Catalyst
+DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES
+SUPPORTS_MACCATALYST = YES
+
 OTHER_CFLAGS = -fno-optimize-sibling-calls
 OTHER_LDFLAGS = $(OTHER_LDFLAGS) -framework SafariServices
 OTHER_LDFLAGS = $(OTHER_LDFLAGS) -framework SystemConfiguration

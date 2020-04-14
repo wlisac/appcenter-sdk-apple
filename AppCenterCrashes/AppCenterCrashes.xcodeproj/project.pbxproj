@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXAggregateTarget section */
@@ -226,6 +226,7 @@
 		C2B25A2D230F079800511D49 /* AppCenterCrashes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9A91F66230BFDB70068070D /* AppCenterCrashes.framework */; };
 		C2B25A30230F07B000511D49 /* AppCenterCrashes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9A91F5B230BFDB40068070D /* AppCenterCrashes.framework */; };
 		C2B25A32230F07B500511D49 /* AppCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2B25A31230F07B500511D49 /* AppCenter.framework */; };
+		C2C8DBED2445C8E200ADBF91 /* libCrashReporter-Catalyst.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C2C8DBEC2445C8DB00ADBF91 /* libCrashReporter-Catalyst.a */; platformFilter = maccatalyst; };
 		C2FE827C23757CB7007DCD28 /* MSApplicationForwarder.h in Headers */ = {isa = PBXBuildFile; fileRef = C2FE827A23757CB7007DCD28 /* MSApplicationForwarder.h */; };
 		C2FE827D23757CB7007DCD28 /* MSApplicationForwarder.h in Headers */ = {isa = PBXBuildFile; fileRef = C2FE827A23757CB7007DCD28 /* MSApplicationForwarder.h */; };
 		C2FE827E23757CB7007DCD28 /* MSApplicationForwarder.h in Headers */ = {isa = PBXBuildFile; fileRef = C2FE827A23757CB7007DCD28 /* MSApplicationForwarder.h */; };
@@ -395,7 +396,7 @@
 		C9EBAB2F230D736A00A20F0F /* AppCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9EBAB2E230D736A00A20F0F /* AppCenter.framework */; };
 		C9EBAB31230D736F00A20F0F /* AppCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9EBAB30230D736F00A20F0F /* AppCenter.framework */; };
 		DFEB98292318FAF400AE88C1 /* libCrashReporter-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DFEB98282318FAF400AE88C1 /* libCrashReporter-tvOS.a */; };
-		DFEB98332318FF5500AE88C1 /* libCrashReporter-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DFEB98262318F90400AE88C1 /* libCrashReporter-iOS.a */; };
+		DFEB98332318FF5500AE88C1 /* libCrashReporter-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DFEB98262318F90400AE88C1 /* libCrashReporter-iOS.a */; platformFilter = ios; };
 		F82E4C75217F1FD700EDAB34 /* sqlite3.c in Sources */ = {isa = PBXBuildFile; fileRef = F82E4C74217F1FD600EDAB34 /* sqlite3.c */; settings = {COMPILER_FLAGS = "-w"; }; };
 		F82E4C76217F1FD700EDAB34 /* sqlite3.c in Sources */ = {isa = PBXBuildFile; fileRef = F82E4C74217F1FD600EDAB34 /* sqlite3.c */; settings = {COMPILER_FLAGS = "-w"; }; };
 		F82E4C77217F1FD700EDAB34 /* sqlite3.c in Sources */ = {isa = PBXBuildFile; fileRef = F82E4C74217F1FD600EDAB34 /* sqlite3.c */; settings = {COMPILER_FLAGS = "-w"; }; };
@@ -600,6 +601,7 @@
 		C2B25A26230F040400511D49 /* AppCenter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AppCenter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2B25A2B230F079800511D49 /* AppCenter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AppCenter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2B25A31230F07B500511D49 /* AppCenter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AppCenter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C2C8DBEC2445C8DB00ADBF91 /* libCrashReporter-Catalyst.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libCrashReporter-Catalyst.a"; sourceTree = "<group>"; };
 		C2FE827A23757CB7007DCD28 /* MSApplicationForwarder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MSApplicationForwarder.h; sourceTree = "<group>"; };
 		C2FE827B23757CB7007DCD28 /* MSApplicationForwarder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MSApplicationForwarder.m; sourceTree = "<group>"; };
 		C2FE8286237594F4007DCD28 /* MSCrashesBufferedLog.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MSCrashesBufferedLog.hpp; sourceTree = "<group>"; };
@@ -741,6 +743,7 @@
 			files = (
 				DFEB98332318FF5500AE88C1 /* libCrashReporter-iOS.a in Frameworks */,
 				C9EBAB2D230D735E00A20F0F /* AppCenter.framework in Frameworks */,
+				C2C8DBED2445C8E200ADBF91 /* libCrashReporter-Catalyst.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1167,6 +1170,7 @@
 			isa = PBXGroup;
 			children = (
 				DFEB980E2318F56B00AE88C1 /* include */,
+				C2C8DBEC2445C8DB00ADBF91 /* libCrashReporter-Catalyst.a */,
 				DFEB98262318F90400AE88C1 /* libCrashReporter-iOS.a */,
 			);
 			name = PLCrashReporter;

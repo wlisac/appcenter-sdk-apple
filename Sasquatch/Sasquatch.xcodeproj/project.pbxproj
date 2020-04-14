@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -85,7 +85,7 @@
 		B20AE38E21027D6200A1A195 /* MSCustomPropertiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B36CE11EEF49B700230341 /* MSCustomPropertiesViewController.swift */; };
 		B20AE38F21027D6200A1A195 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 84226C4A1E88FF4A00798417 /* main.m */; };
 		B20AE39021027D6200A1A195 /* PropertiesTableSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359171F620F7F80800F3DDE6 /* PropertiesTableSection.swift */; };
-		B20AE39221027D6200A1A195 /* MSDistributeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A0FF6B1E8A87E1000E7A28 /* MSDistributeViewController.swift */; };
+		B20AE39221027D6200A1A195 /* MSDistributeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A0FF6B1E8A87E1000E7A28 /* MSDistributeViewController.swift */; platformFilter = ios; };
 		B20AE39321027D6200A1A195 /* AppCenterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84226D3A1E8937FF00798417 /* AppCenterDelegate.swift */; };
 		B20AE39C21027D6200A1A195 /* Sasquatch.strings in Resources */ = {isa = PBXBuildFile; fileRef = 041A4BAF1F8C28A3009E1B6C /* Sasquatch.strings */; };
 		B20AE39F21027D6200A1A195 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F809D5021FC6DA2B005E0F83 /* LaunchScreen.storyboard */; };
@@ -193,10 +193,11 @@
 		C261445D230FE88A00D65EBF /* AppCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C261440A230FE86400D65EBF /* AppCenter.framework */; };
 		C261445E230FE88A00D65EBF /* AppCenterAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C261441C230FE86400D65EBF /* AppCenterAnalytics.framework */; };
 		C2614460230FE88A00D65EBF /* AppCenterCrashes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C261443A230FE86400D65EBF /* AppCenterCrashes.framework */; };
-		C2614462230FE88A00D65EBF /* AppCenterDistribute.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2614450230FE86400D65EBF /* AppCenterDistribute.framework */; };
+		C2614462230FE88A00D65EBF /* AppCenterDistribute.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2614450230FE86400D65EBF /* AppCenterDistribute.framework */; platformFilter = ios; };
 		C2614463230FE88A00D65EBF /* AppCenterPush.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C261445A230FE86400D65EBF /* AppCenterPush.framework */; };
 		C27AD55D234C961C00A2576F /* Sasquatch ObjC.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = C27AD55C234C961C00A2576F /* Sasquatch ObjC.xcconfig */; };
 		C27AD55E234C961C00A2576F /* Sasquatch ObjC.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = C27AD55C234C961C00A2576F /* Sasquatch ObjC.xcconfig */; };
+		C2C8DBBE2445C24500ADBF91 /* MSAAnalyticsAuthenticationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F83587C7242B6B6F007D83F3 /* MSAAnalyticsAuthenticationProvider.swift */; };
 		C2F156D12338C2FC00798480 /* CrashLibIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2F156AA2338C26A00798480 /* CrashLibIOS.framework */; };
 		C2F156D22338C2FC00798480 /* CrashLibIOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C2F156AA2338C26A00798480 /* CrashLibIOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C2F156D52338C30400798480 /* CrashLibIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2F156AA2338C26A00798480 /* CrashLibIOS.framework */; };
@@ -2902,7 +2903,7 @@
 				B2A4CF94210A6E6900199B4F /* CommonSchemaPropertiesTableSection.swift in Sources */,
 				B2A4CF95210A6E6900199B4F /* MSCustomPropertiesViewController.swift in Sources */,
 				B2A4CF96210A6E6900199B4F /* MSTransmissionTargets.swift in Sources */,
-				F83587C9242B6B6F007D83F3 /* MSAAnalyticsAuthenticationProvider.swift in Sources */,
+				C2C8DBBE2445C24500ADBF91 /* MSAAnalyticsAuthenticationProvider.swift in Sources */,
 				B2A4CF97210A6E6900199B4F /* MSAnalyticsResultViewController.swift in Sources */,
 				B2A4CF98210A6E6900199B4F /* MSMainViewController.swift in Sources */,
 				B2A4CF99210A6E6900199B4F /* PropertiesTableSection.swift in Sources */,
