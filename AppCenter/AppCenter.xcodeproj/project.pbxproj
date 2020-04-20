@@ -1196,6 +1196,7 @@
 		F803BC371E8E6927004B1E7A /* MSCustomPropertiesTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSCustomPropertiesTests.m; sourceTree = "<group>"; };
 		F803BC391E8E6963004B1E7A /* MSCustomPropertiesLogTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSCustomPropertiesLogTests.m; sourceTree = "<group>"; };
 		F82E4C6C217F159A00EDAB34 /* sqlite3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = sqlite3.c; path = ../../Vendor/SQLite3/sqlite3.c; sourceTree = "<group>"; };
+		F85B16C5244DF52000962E40 /* AppCenter.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; name = AppCenter.modulemap; path = AppCenter/AppCenter.modulemap; sourceTree = "<group>"; };
 		F898179E2433327C008D92E1 /* MSAppCenterUserDefaultsPrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MSAppCenterUserDefaultsPrivate.h; sourceTree = "<group>"; };
 		F8BA7A2823AA8A26009FBCCF /* MSStorageBindableArray.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MSStorageBindableArray.h; sourceTree = "<group>"; };
 		F8BA7A2C23AA8B84009FBCCF /* MSStorageBindableArray.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MSStorageBindableArray.m; sourceTree = "<group>"; };
@@ -1478,6 +1479,7 @@
 		6E0400FA1D1C98220051BCFA = {
 			isa = PBXGroup;
 			children = (
+				F85B16C5244DF52000962E40 /* AppCenter.modulemap */,
 				6E0401051D1C98220051BCFA /* AppCenter */,
 				6E2395791D22EF4F00E543C8 /* AppCenterTests */,
 				6E0401041D1C98220051BCFA /* Products */,

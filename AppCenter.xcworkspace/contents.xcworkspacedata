@@ -60,6 +60,9 @@
       location = "group:README.md">
    </FileRef>
    <FileRef
+      location = "group:Package.swift">
+   </FileRef>
+   <FileRef
       location = "group:ThirdPartyNotices.txt">
    </FileRef>
    <Group
