@@ -5,4 +5,4 @@
 
 source $(dirname "$0")/../build-ios-framework.sh
 
-rm -r "${WORK_DIR}"
+# rm -r "${WORK_DIR}"
