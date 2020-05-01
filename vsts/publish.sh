@@ -230,6 +230,9 @@ uploadToGithub() {
   fi
 }
 
+echo $gh_filename
+ls
+
 if [ "$mode" == "external" ]; then
   uploadToGithub $gh_filename
   uploadToGithub $carthage_filename
