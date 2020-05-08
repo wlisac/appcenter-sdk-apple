@@ -35,4 +35,4 @@ fi
 
 # Clean build frameworks which was used to create XCFramework.
 shopt -s extglob
-rm -rfv $WORK_DIR/!("Output")
+#rm -rfv $WORK_DIR/!("Output")
