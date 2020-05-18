@@ -15,6 +15,7 @@ let package = Package(
     products: [
         .library(
              name: "AppCenter",
+             type: .static,
              targets: ["AppCenter"]),
         .library(
             name: "AppCenterAnalytics",
